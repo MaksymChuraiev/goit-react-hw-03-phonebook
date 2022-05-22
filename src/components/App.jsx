@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { ContactSection } from './ContactSection/ContactSection.styled';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { ContactFilter } from './ContactFilter/ContactFilter';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import ContactFilter from './ContactFilter/ContactFilter';
 import { ContactTitle } from './ContactList/ContactList.styled';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 const CONTACTS = 'contacts';
 
@@ -31,40 +31,40 @@ export class App extends Component {
     }
   }
 
-  addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
+  // addContact = ({ name, number }) => {
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
 
-    const contacts = this.state.contacts;
+  //   const contacts = this.state.contacts;
 
-    if (
-      contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      return alert(`${name} is already in contacts.`);
-    }
+  //   if (
+  //     contacts.some(
+  //       contact => contact.name.toLowerCase() === name.toLowerCase()
+  //     )
+  //   ) {
+  //     return alert(`${name} is already in contacts.`);
+  //   }
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+  //   this.setState(({ contacts }) => ({
+  //     contacts: [contact, ...contacts],
+  //   }));
 
-    //   this.setState(({ contacts }) => {
-    //     if (
-    //       contacts.some(
-    //         contact => contact.name.toLowerCase() === name.toLowerCase()
-    //       )
-    //     ) {
-    //       return alert(`${name} is already in contacts.`);
-    //     }
-    //     return {
-    //       contacts: [contact, ...contacts],
-    //     };
-    //   });
-  };
+  //   //   this.setState(({ contacts }) => {
+  //   //     if (
+  //   //       contacts.some(
+  //   //         contact => contact.name.toLowerCase() === name.toLowerCase()
+  //   //       )
+  //   //     ) {
+  //   //       return alert(`${name} is already in contacts.`);
+  //   //     }
+  //   //     return {
+  //   //       contacts: [contact, ...contacts],
+  //   //     };
+  //   //   });
+  // };
 
   getContactsList = () => {
     const filterValue = this.state.filter.toLowerCase().trim();
@@ -75,9 +75,9 @@ export class App extends Component {
     );
   };
 
-  filterContact = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
+  // filterContact = e => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
 
   deleteContact = id => {
     this.setState(prevState => ({
@@ -89,12 +89,12 @@ export class App extends Component {
     const { filter } = this.state;
     return (
       <ContactSection>
-        <ContactForm onSubmit={this.addContact} />
+        <ContactForm />
         <ContactTitle>Contacts</ContactTitle>
-        <ContactFilter value={filter} onChange={this.filterContact} />
+        <ContactFilter value={filter} />
         <ContactList
-          contacts={this.getContactsList}
-          onDeleteContact={this.deleteContact}
+        // contacts={this.getContactsList}
+        // onDeleteContact={this.deleteContact}
         ></ContactList>
       </ContactSection>
     );

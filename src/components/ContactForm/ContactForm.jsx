@@ -2,6 +2,8 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addContact } from 'redux/contactsAction';
 import {
   FormTitle,
   FormThumb,
@@ -30,9 +32,10 @@ const renderErrorMessage = message => (
   <FormErrorMessage>{message}</FormErrorMessage>
 );
 
-export const ContactForm = ({ onSubmit }) => {
+const ContactForm = ({ onAddContact }) => {
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values);
+    onAddContact(values);
+    // onSubmit(values);
 
     resetForm();
   };
@@ -63,8 +66,14 @@ export const ContactForm = ({ onSubmit }) => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  onAddContact: contact => dispatch(addContact(contact)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);
+
 ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
 };
 
 // export class ContactForm extends Component {
